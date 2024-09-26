@@ -17,6 +17,9 @@ body {
     max-width: 100%;
     overflow-x: hidden;
 }
+body.no-scroll {
+    overflow: hidden;
+}
 * {
     box-sizing: border-box;
     margin: 0;
@@ -301,7 +304,7 @@ h6 {
         }
     }
     &__discussion {
-        a {
+        p {
             position: relative;
             font-size: 14px;
             text-transform: uppercase; 
@@ -580,7 +583,7 @@ h6 {
                 display: flex;
                 align-items: self-end;
                 column-gap: 146px;
-                a {
+                span {
                     position: relative;
                     font-size: 14px;
                     text-transform: uppercase; 
@@ -794,6 +797,7 @@ h6 {
     }
 }
 .info {
+    z-index: 3;
     padding: 70px 0px 137px 0px;
     background-color: #181818;
     position: relative;
@@ -956,8 +960,9 @@ h6 {
     &__right {
         display: flex;
         flex-direction: column;
-        row-gap: 42px;
+        // row-gap: 42px;
         &--block1, &--block2 {
+            z-index: 1;
             max-width: 420px;
             display: flex;
             flex-direction: column;
@@ -991,6 +996,7 @@ h6 {
             }
         }
         &--block1 {
+            
             row-gap: 86px;
         }
         &--block2 {
@@ -1462,6 +1468,166 @@ h6 {
 }
 .desktop {
     display: flex;
+}
+.modal {
+    padding: 42px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 99998;
+    background-color: transparent;
+    backdrop-filter: blur(20px);
+    transition: opacity .4s, visibility .4s;
+    visibility: hidden;
+    opacity: 0;
+    overflow: hidden;
+    &__box {
+        display: flex;
+        flex-direction: column;
+        max-width: 1055px;
+        padding: 64px;
+        z-index: 1;
+        background-color: $white;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        border-radius: 15px;
+        &--title {
+            h2 {
+                font-size: 64px;
+                font-weight: 700;
+                line-height: 80px;
+                letter-spacing: -0.03em;
+                margin-bottom: 42px;
+            }
+        }
+        &--inputs {
+            display: flex;
+            flex-direction: column;
+            row-gap: 32px;
+            margin-bottom: 32px;
+        }
+        &--inputTop {
+            display: flex;
+            column-gap: 32px;
+        }
+        &--name, &--numb {
+            flex: 50%;
+            width: 100%;
+        }
+        &--name, &--numb, &--mail, &--text {
+            input:focus {
+            outline: none;
+            font-family: 'KT Kiyosuna Sans L';
+            font-size: 16px;
+            font-weight: 300;
+            line-height: 20.8px;
+            letter-spacing: -0.02em;
+            }
+            & input[type=email]::placeholder {
+                font-family: 'KT Kiyosuna Sans L';
+                font-size: 16px;
+                font-weight: 300;
+                line-height: 20.8px;
+                letter-spacing: -0.02em;
+                text-align: left;
+            }
+        }
+        &--file {
+            cursor: pointer;
+            position: relative;
+            display: flex;
+            align-items: center;
+            column-gap: 8px;
+            margin-bottom: 32px;
+            p {
+                font-family: 'KT Kiyosuna Sans L';
+                font-size: 16px;
+                font-weight: 300;
+                line-height: 20.8px;
+                letter-spacing: -0.02em;
+            }
+        }
+        &--check {
+            display: flex;
+            column-gap: 8px;
+            margin-bottom: 32px;
+            label {
+                font-family: 'KT Kiyosuna Sans L';
+                font-size: 16px;
+                font-weight: 300;
+                line-height: 20.8px;
+                letter-spacing: -0.02em;
+                text-align: left;
+            }
+            span {
+                color: $beige;
+                text-decoration: underline;
+            }
+        }
+        &--btn {
+            margin-bottom: 80px;
+            button {
+                width: 100%;
+                padding: 20px 0px;
+                background-color: $white;
+                border: 1px solid $black;
+                border-radius: 10px;
+                font-size: 16px;
+                font-weight: 700;
+                line-height: 20.8px;
+                letter-spacing: -0.02em;
+            }
+        }
+        &--contact {
+            display: flex;
+            justify-content: space-between;
+            a {
+                font-size: 16px;
+                font-weight: 700;
+                line-height: 20.8px;
+                letter-spacing: -0.02em;
+                text-align: left;
+                text-decoration: none;
+                color: $black;
+            }
+            div {
+                display: flex;
+                align-items: center;
+                column-gap: 6px;
+            }
+        }
+    }
+    &__exit {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 60px;
+        height: 60px;
+        border: 1px solid $white;
+        background-color: $grey;
+    }
+    &__file {
+        position: absolute;
+        height: 25px;
+        width: 160px;
+        left: -2px;
+        opacity: 0;
+    }
+}
+.modal.open {
+    visibility: visible;
+    opacity: 1;
+}
+.modal.open .modals{
+    transform: scale(1);
+}
+.modals{
+    display: flex;
+    justify-content: space-between;
+    transform: scale(0);
+    transition: transform .8s;
 }
 @media (max-width: 922px) {
     .desktop {

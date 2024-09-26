@@ -1033,6 +1033,7 @@ h6 {
 }
 
 .info {
+    z-index: 3;
     padding: 70px 0px 137px 0px;
     background-color: #181818;
     position: relative;
@@ -1240,6 +1241,7 @@ h6 {
 }
 
 .escort__right--block1, .escort__right--block2 {
+    z-index: 1;
     max-width: 420px;
     display: -ms-flexbox;
     display: flex;
